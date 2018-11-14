@@ -82,7 +82,8 @@ export default class AddExercise extends React.Component {
             value={this.state.notes}
             ></textarea>
         </label>
-
+        
+        <button>Spara övning</button>
       </div>
     );
   }

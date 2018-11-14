@@ -1,12 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import AppRouter from './routers/AppRouter';
 import { hot } from 'react-hot-loader'
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware, compose } from 'redux';
+import configureStore from './store/configureStore';
+import AppRouter from './routers/AppRouter';
+
+const store = configureStore();
 
 const App = () => (
-  <div>
+  <Provider store={store}>
     <AppRouter />
-  </div>
+  </Provider>
 );
 
  export default hot(module)(App);

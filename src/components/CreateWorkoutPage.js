@@ -9,8 +9,7 @@ const CreateWorkoutPage = () => (
       <input type="text" value="Namn på workout" />
 
       <AddExercise />
-      <button>Lägg till övning</button>
-
+      
       <input type="submit" value="Spara workout" />
     </form>
   </div>

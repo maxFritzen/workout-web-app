@@ -18,8 +18,8 @@ const AppRouter = () => (
       <Header />
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/workout/:id" component={WorkoutPage} />
-        <Route path="/workout/create" component={CreateWorkoutPage} />
+        <Route path="/workouts/workout/:id" component={WorkoutPage} />
+        <Route path="/workouts/create" component={CreateWorkoutPage} />
         <Route component={NotFoundPage}/>
       </Switch>
     </div>

@@ -9,4 +9,5 @@ const App = () => (
   </div>
 );
 
-export default hot(module)(AppRouter);
+ export default hot(module)(App);
+//export default App;

@@ -17,13 +17,13 @@ const WorkoutPage = ({match}) => (
         name="Mark"
         weight="100"
         sets="3"
-        reps="3"
+        reps="5"
         />
         <Exercise
           name="Benpress"
           weight="60"
           sets="3"
-          reps="120"
+          reps="12"
           />
     </ul>
   </div>

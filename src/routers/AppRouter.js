@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { hot } from 'react-hot-loader'
 
 import Home from '../components/Home';
 import WorkoutPage from '../components/WorkoutPage';
@@ -26,4 +27,5 @@ const AppRouter = () => (
   </Router>
 );
 
-export default AppRouter;
+// export default AppRouter;
+export default hot(module)(AppRouter);

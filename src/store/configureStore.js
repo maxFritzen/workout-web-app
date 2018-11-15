@@ -9,8 +9,7 @@ export default () => {
   composeEnhancers(applyMiddleware(thunk))
   );
   if (module.hot) {
-    console.log('module hot yes');
-    // Enable Webpack hot module replacement for reducers
+    console.log('module hot for redux as well');
     module.hot.accept('../reducers', () => {
       const nextRootReducer = require('../reducers/index');
       store.replaceReducer(nextRootReducer);

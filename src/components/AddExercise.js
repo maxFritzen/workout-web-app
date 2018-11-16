@@ -86,7 +86,7 @@ export default class AddExercise extends React.Component {
 
         <input
           type="button"
-          onClick={() => this.props.onClick(this.state, this.props.id)}
+          onClick={() => this.props.onClick(this.state)}
           value="Spara övning"
           />
       </div>

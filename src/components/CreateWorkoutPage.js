@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createWorkout } from '../actions';
 import AddExercise from './AddExercise';
+import Exercise from './Exercise';
 
 class CreateWorkoutPage extends React.Component {
   constructor(props) {
@@ -10,9 +11,9 @@ class CreateWorkoutPage extends React.Component {
       inputFields: [null],//Behövs den här?
       nameWorkout: '',
       exercises: {
-          "1" : {
+          "0" : {
           name: 'Bänk',
-          id: 1,
+          id: '0',
           weight: null,
           sets: null,
           reps: null,
@@ -20,7 +21,7 @@ class CreateWorkoutPage extends React.Component {
           notes: ''
         }
       },
-      exerciseIDs :["1"]
+      exerciseIDs :["0"]
     }
   };
 
@@ -31,33 +32,72 @@ class CreateWorkoutPage extends React.Component {
     });
   };
 
-  handleSaveExercise = (data, id) => {
+  handleSaveExercise = (data) => {
     // Den här datan skickas från AddExercise, det är alltså input values
-    console.log(data, id);
-    //const generatedId = this.state.exerciseIDs.length; // CHANGE THIS LATER
+    console.log('handleSaveExercise data:' ,data);
+    const generatedId = this.state.exerciseIDs.length.toString(); // CHANGE THIS LATER
+    console.log('handleSaveExercise id:' ,generatedId);
     this.setState({
       exercises: {
         ...this.state.exercises,
-        [id]: data
+        [generatedId]: {
+          ...data,
+          id: generatedId
+        }
       }
     });
-    if (!this.state.exerciseIDs.includes(id)) {
+    if (!this.state.exerciseIDs.includes(generatedId)) {
       console.log('ID är inte tillagt, läggs till i exerciseIDs');
       this.setState({
-        exerciseIDs: [...this.state.exerciseIDs, id]
+        exerciseIDs: [...this.state.exerciseIDs, generatedId]
       });
     }
   };
+  // handleSaveExercise = (data, id) => {
+  //   // Den här datan skickas från AddExercise, det är alltså input values
+  //   console.log(data, id);
+  //   //const generatedId = this.state.exerciseIDs.length; // CHANGE THIS LATER
+  //   this.setState({
+  //     exercises: {
+  //       ...this.state.exercises,
+  //       [id]: data
+  //     }
+  //   });
+  //   if (!this.state.exerciseIDs.includes(id)) {
+  //     console.log('ID är inte tillagt, läggs till i exerciseIDs');
+  //     this.setState({
+  //       exerciseIDs: [...this.state.exerciseIDs, id]
+  //     });
+  //   }
+  // };
 
-  renderNewAddQuestion = () => {
-    // Should render new inputs
+  renderExercises = () => {
+    const exerciseIDs = this.state.exerciseIDs;
+    const newList = exerciseIDs.map((id) => {
+      console.log('id : ' , id);
+      const data = this.state.exercises[id];
+        return (
+          <li key={id}>
+            <Exercise
+              data={data}
+              />
+          </li>
+        );
+    });
+    return newList;
   };
 
   onSubmit = (e) => {
     e.preventDefault();
     console.log('onSubmit');
   };
-
+  // {this.state.exerciseIDs.map((id, index) => {
+  //   return (
+  //     <li key={index}>
+  //       <AddExercise onClick={this.handleSaveExercise} id={index} />
+  //     </li>
+  //   );
+  // })}
   render() {
     return (
       <div>
@@ -71,13 +111,8 @@ class CreateWorkoutPage extends React.Component {
             value={this.state.nameWorkout}
             name="nameWorkout"
             />
-          {this.state.exerciseIDs.map((id, index) => {
-            return (
-              <li key={index}>
-                <AddExercise onClick={this.handleSaveExercise} id={index} />
-              </li>
-            );
-          })}
+          {this.renderExercises()}
+          <AddExercise onClick={this.handleSaveExercise} />
           <input type="submit" value="Spara workout" />
         </form>
       </div>

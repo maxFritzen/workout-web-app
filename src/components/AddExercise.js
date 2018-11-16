@@ -24,6 +24,7 @@ export default class AddExercise extends React.Component {
   render() {
     return (
       <div>
+        <p>My Id is: {this.props.id}</p>
         <label>Name
           <input
             type="text"
@@ -85,7 +86,7 @@ export default class AddExercise extends React.Component {
 
         <input
           type="button"
-          onClick={() => this.props.onClick(this.state)}
+          onClick={() => this.props.onClick(this.state, this.props.id)}
           value="Spara övning"
           />
       </div>

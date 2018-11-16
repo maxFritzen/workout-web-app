@@ -31,24 +31,33 @@ class CreateWorkoutPage extends React.Component {
     });
   };
 
-  handleSaveExercise = (data) => {
+  handleSaveExercise = (data, id) => {
     // Den här datan skickas från AddExercise, det är alltså input values
-    console.log(data);
-    const generatedId = this.state.exerciseIDs.length; // CHANGE THIS LATER
+    console.log(data, id);
+    //const generatedId = this.state.exerciseIDs.length; // CHANGE THIS LATER
     this.setState({
       exercises: {
         ...this.state.exercises,
-        [generatedId]: data
-      },
-      exerciseIDs: [...this.state.exerciseIDs, generatedId]
+        [id]: data
+      }
     });
+    if (!this.state.exerciseIDs.includes(id)) {
+      console.log('ID är inte tillagt, läggs till i exerciseIDs');
+      this.setState({
+        exerciseIDs: [...this.state.exerciseIDs, id]
+      });
+    }
+  };
 
-  }
+  renderNewAddQuestion = () => {
+    // Should render new inputs
+  };
 
   onSubmit = (e) => {
     e.preventDefault();
     console.log('onSubmit');
-  }
+  };
+
   render() {
     return (
       <div>
@@ -62,16 +71,18 @@ class CreateWorkoutPage extends React.Component {
             value={this.state.nameWorkout}
             name="nameWorkout"
             />
-          <AddExercise onClick={this.handleSaveExercise} />
-
-          {this.state.inputFields.map((item, index) => {
-            return <li key={index}>{item}</li>
+          {this.state.exerciseIDs.map((id, index) => {
+            return (
+              <li key={index}>
+                <AddExercise onClick={this.handleSaveExercise} id={index} />
+              </li>
+            );
           })}
           <input type="submit" value="Spara workout" />
         </form>
       </div>
     );
-  }
+  };
 };
 
 

@@ -6,6 +6,7 @@ const initialState = {
     exercises: [1,31,3]
   }
 };
+
 export default(state = initialState, action) => {
   switch(action.type) {
     case CREATE_WORKOUT:

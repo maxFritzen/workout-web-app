@@ -11,7 +11,7 @@ class CreateWorkoutPage extends React.Component {
       nameWorkout: '',
       exercises: {
           "1" : {
-          name: 'Bänk',
+          name: '',
           id: 1,
           weight: null,
           sets: null,
@@ -56,6 +56,10 @@ class CreateWorkoutPage extends React.Component {
   onSubmit = (e) => {
     e.preventDefault();
     console.log('onSubmit');
+    this.props.createWorkout({
+      name: this.state.nameWorkout,
+      exercises: this.state.exercises
+    });
   };
 
   render() {

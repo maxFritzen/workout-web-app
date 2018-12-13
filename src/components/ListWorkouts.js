@@ -11,7 +11,15 @@ class ListWorkouts extends React.Component {
         <h2>Lista av workouts!</h2>
         <p>Välj en workout för att komma vidare till den.</p>
         <ul>
-          <li><Link to="workouts/workout/123">Workout 1</Link></li>
+          {
+            this.props.workouts.map((workout) => {
+              return (
+                <li key={workout.id}>
+                  <Link to={`workouts/workout/${workout.id}`}>{workout.name}</Link>
+                  </li>
+              );
+            })
+          }
         </ul>
       </div>
     );

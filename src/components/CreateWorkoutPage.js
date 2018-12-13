@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import uuid from 'uuid/v1';
 import { createWorkout } from '../actions';
 import AddExercise from './AddExercise';
 
@@ -22,6 +23,7 @@ class CreateWorkoutPage extends React.Component {
       },
       exerciseIDs :["1"]
     }
+    this.id = uuid();
   };
 
   onNameWorkoutChange = (e) => {
@@ -57,12 +59,14 @@ class CreateWorkoutPage extends React.Component {
     e.preventDefault();
     console.log('onSubmit');
     this.props.createWorkout({
+      id: this.id,
       name: this.state.nameWorkout,
       exercises: this.state.exercises
     });
   };
 
   render() {
+    console.log(this.id);
     return (
       <div>
         <h3>Det här är CreateWorkoutPage</h3>
@@ -78,7 +82,7 @@ class CreateWorkoutPage extends React.Component {
           {this.state.exerciseIDs.map((id, index) => {
             return (
               <li key={index}>
-                <AddExercise onClick={this.handleSaveExercise} id={index} />
+                <AddExercise onClick={this.handleSaveExercise} id={uuid()} />
               </li>
             );
           })}

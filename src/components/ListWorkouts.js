@@ -3,7 +3,9 @@ import { Link } from "react-router-dom";
 import { connect } from 'react-redux';
 
 class ListWorkouts extends React.Component {
+
   render() {
+    console.log(this.props.workouts);
     return (
       <div>
         <h2>Lista av workouts!</h2>
